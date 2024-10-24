@@ -13,7 +13,7 @@ class CredentialsPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class CredentialsPolicy
      */
     public function view(User $user, Credentials $credentials): bool
     {
-        //
+        return $user->id === $credentials->user_id;
     }
 
     /**
@@ -29,7 +29,7 @@ class CredentialsPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->hasVerifiedEmail();
     }
 
     /**
@@ -37,7 +37,7 @@ class CredentialsPolicy
      */
     public function update(User $user, Credentials $credentials): bool
     {
-        //
+        return $user->id === $credentials->user_id;
     }
 
     /**
@@ -45,22 +45,6 @@ class CredentialsPolicy
      */
     public function delete(User $user, Credentials $credentials): bool
     {
-        //
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function restore(User $user, Credentials $credentials): bool
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, Credentials $credentials): bool
-    {
-        //
+        return $user->id === $credentials->user_id;
     }
 }
